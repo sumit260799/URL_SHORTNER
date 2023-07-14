@@ -1,15 +1,26 @@
 const express = require("express");
-var path = require("path");
+const cookieParser = require("cookie-parser");
 const app = express();
+app.use(cookieParser());
+const path = require("path");
+
+const port = 5000;
+
+const staticRouter = require("./routes/url");
+const userRouter = require("./routes/user");
 require("dotenv").config();
 require("./db/connection");
-const port = process.env.PORT || 6000;
-const URL = require("./models/model");
-app.set("view engine", "ejs");
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-const userRoutes = require("./routes/url");
-app.use(userRoutes);
+
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "./views"));
+app.set("views", path.resolve("./views"));
+
+app.use("/", staticRouter);
+app.use("/user", userRouter);
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
