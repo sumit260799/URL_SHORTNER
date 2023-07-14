@@ -1,5 +1,5 @@
 const express = require("express");
-
+var path = require("path");
 const app = express();
 require("dotenv").config();
 require("./db/connection");
@@ -10,11 +10,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 const userRoutes = require("./routes/url");
 app.use(userRoutes);
-app.get("/", (req, res) => {
-  res.render("home");
-});
-const shortid = require("shortid");
-
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

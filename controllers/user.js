@@ -1,8 +1,17 @@
 const shortid = require("shortid");
 const URL = require("../models/model");
 
+shortid.characters(
+  "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@"
+);
+
+const generateShortID = () => {
+  let id = shortid.generate();
+  return id.slice(0, 6); // Extract the first 6 characters of the generated ID
+};
+
 const postURL = async (req, res) => {
-  const shortID = shortid();
+  const shortID = generateShortID();
 
   try {
     const newURL = new URL({
