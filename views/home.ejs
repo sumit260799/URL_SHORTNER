@@ -25,7 +25,10 @@
             <a href="<%= element.redirectURL %>"><%= element.redirectURL %></a>
           </td>
           <td>
-            <a href="<%= element.shortURL %>"> <%= element.shortURL %></a>
+            <a href="<%= element.shortURL %>">
+              <%= `https://coffee-drill-hat.cyclic.app/+${element.shortURL}`
+              %></a
+            >
           </td>
           <td><%= element.clicks %></td>
         </tr>
