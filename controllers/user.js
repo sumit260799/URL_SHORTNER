@@ -18,6 +18,7 @@ const postURL = async (req, res) => {
       shortURL: shortID,
       redirectURL: req.body.url,
       visitHistory: [],
+      createdBy: req.user._id,
     });
     await newURL.save();
     res.status(201).redirect("/");

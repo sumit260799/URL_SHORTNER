@@ -15,10 +15,18 @@
       crossorigin="anonymous"
     />
     <title>URL Shortner</title>
+    <style>
+      .linktag {
+        list-style: none;
+        text-decoration: none;
+        font-size: 1.2rem;
+      }
+    </style>
   </head>
   <body>
-    <div class="container my-5 w-50">
-      <form method="post" action="/user/login">
+    <div class="container my-5 row d-flex mx-auto justify-content-center">
+      <form method="post" class="col-sm-9" action="/user/login">
+        <h2 class="text-primary mb-3 text-center">LogIn</h2>
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
           <input
@@ -29,7 +37,7 @@
             placeholder="Enter email"
           />
         </div>
-        <div class="form-group">
+        <div class="form-group mt-2">
           <label for="exampleInputPassword1">Password</label>
           <input
             type="text"
@@ -39,7 +47,10 @@
           />
         </div>
 
-        <button type="submit" class="btn btn-primary mt-2">Submit</button>
+        <button type="submit" class="btn btn-primary mt-4">Submit</button>
+        <p class="mt-2">
+          new user <a class="linktag" href="signup">SignUp</a> now.
+        </p>
       </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>

@@ -30,40 +30,70 @@
       .cursor {
         cursor: pointer;
       }
+      .table-responsive-scroll {
+        overflow-x: auto;
+      }
+
+      .table-responsive-scroll td {
+        white-space: nowrap;
+        max-width: 300px; /* Adjust the maximum width as needed */
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .signupbtn {
+        text-decoration: none;
+        color: yellow;
+      }
     </style>
   </head>
   <body>
     <div class="container my-5">
       <!-- <form action="/post" method="post"> -->
-      <form
-        class="form-inline row container d-flex my-4"
-        method="post"
-        action="/post"
-      >
-        <div class="col-sm-3 col-8 p-0">
-          <input
-            class="form-control rounded-0"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-            name="url"
-          />
+      <div class="d-flex align-items-center justify-content-between row">
+        <form
+          class="form-inline col-9 row container d-flex my-4"
+          method="post"
+          action="/post"
+        >
+          <div class="col-sm-5 col-7 p-0">
+            <input
+              class="form-control rounded-0 text-warning text-capitalize"
+              type="search"
+              placeholder="enter your link"
+              name="url"
+            />
+          </div>
+          <div class="col-2 p-0">
+            <button class="btn btn-warning rounded-0 text-white" type="submit">
+              Submit
+            </button>
+          </div>
+        </form>
+        <div class="col-3">
+          <div class="ms-auto d-flex justify-content-end btn-outline-warning">
+      <% if (!findUrl.length>0) { %>
+    <button type="button" class="btn btn-outline-warning">
+      <a class="signupbtn" href="/signup">SignUp</a>
+    </button>
+  <% } else { %>
+    <form id="logoutForm" method="post" action="/logout">
+      <button class="btn btn-outline-warning" type="submit">Logout</button>
+    </form>
+  <% } %>
         </div>
-        <div class="col-sm-1 col-4 p-0">
-          <button class="btn btn-warning rounded-0 text-white" type="submit">
-            Submit
-          </button>
-        </div>
-      </form>
+      </div>
       <!-- </form> -->
 
-      <table class="table table-bordered table-responsive border-warning">
+      <table
+        class="table table-bordered table-responsive-scroll table-responsive p-0 border-warning"
+      >
         <thead>
           <tr class="text-white">
             <th scope="col">Index</th>
             <th scope="col">Full URL</th>
             <th scope="col">Short URL</th>
             <th scope="col">Clicks</th>
+            <th scope="col">Created At</th>
             <th scope="col">Delete</th>
           </tr>
         </thead>
@@ -82,6 +112,7 @@
               >
             </td>
             <td><%= item.clicks %></td>
+            <td><%= item.createdAt %></td>
             <td class="cursor">
               <i class="bi bi-trash3-fill text-danger"></i>
             </td>
@@ -89,7 +120,6 @@
           <% }) %>
         </tbody>
       </table>
-      <button><a href="/signup">sign</a></button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
   </body>

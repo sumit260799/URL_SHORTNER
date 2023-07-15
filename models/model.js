@@ -16,6 +16,15 @@ const urlSchema = new mongoose.Schema(
       required: true,
       default: 0,
     },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      get: (value) => value.toISOString().split("T")[0], // Customize the getter function to retrieve only the date
+    },
     visitHistory: [{ timestamp: { type: Number } }],
   },
   { timestamps: true }

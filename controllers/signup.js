@@ -15,7 +15,7 @@ const userSignup = async (req, res) => {
     const newUser = new User({ name, email, password });
     await newUser.save();
 
-    return res.status(201).redirect("/");
+    return res.status(201).redirect("/login");
   } catch (error) {
     return res.status(500).json({ error: "Sign Up Again" });
   }
