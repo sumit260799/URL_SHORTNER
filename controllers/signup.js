@@ -29,9 +29,9 @@ const userLogin = async (req, res) => {
     if (!user) {
       return res.status(400).redirect("/login");
     }
-    const sessionId = uuidv4();
-    setUser(sessionId, user);
-    res.cookie("uid", sessionId);
+    // const sessionId = uuidv4();    //for statefull......
+    const token = setUser(user);
+    res.cookie("uid", token);
     return res.redirect("/");
   } catch (error) {
     return res.status(500).json({ error: "Log In Again" });

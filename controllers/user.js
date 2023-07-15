@@ -24,7 +24,7 @@ const postURL = async (req, res) => {
     res.status(201).redirect("/");
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error: "Failed to save URL" });
+    res.status(500).redirect("/");
   }
 };
 
