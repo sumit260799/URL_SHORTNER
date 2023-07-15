@@ -11,10 +11,7 @@ router.get("/login", (req, res) => {
 });
 // Logout route
 router.post("/logout", (req, res) => {
-  // Clear the cookie by setting it to an empty value and expiring it immediately
   res.clearCookie("uid");
-
-  // Redirect to the login page or any other desired page
   res.redirect("/login");
 });
 
@@ -33,6 +30,19 @@ router.get("/", checkAuth, async (req, res) => {
   } catch (error) {
     return res.status(500).json({ error: "Internal Server Error" });
   }
+});
+
+router.post("/delete", async (req, res) => {
+  const idToDelete = req.body.id; // Get the ID of the URL item to delete
+
+  try {
+    const deletedItem = await URL.findByIdAndDelete(idToDelete);
+    // console.log("Data deleted successfully:", deletedItem);
+  } catch (error) {
+    console.log("Error deleting data:", error);
+  }
+
+  res.redirect("/");
 });
 
 module.exports = router;
